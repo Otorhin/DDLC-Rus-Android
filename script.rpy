@@ -28,103 +28,130 @@ label start:
     if persistent.playthrough == 0:
 
         $ chapter = 0
-        call ch0_main from  _call_ch0_main
+        call ch0_main from _call_ch0_main
 
 
-        call poem from  _call_poem
+        call poem from _call_poem
 
 
         $ chapter = 1
-        call ch1_main from  _call_ch1_main
-        call poemresponse_start from  _call_poemresponse_start
-        call ch1_end from  _call_ch1_end
+        call ch1_main from _call_ch1_main
+        call poemresponse_start from _call_poemresponse_start
+        call ch1_end from _call_ch1_end
 
 
-        call poem from  _call_poem_1
+        call poem from _call_poem_1
 
 
         $ chapter = 2
-        call ch2_main from  _call_ch2_main
-        call poemresponse_start from  _call_poemresponse_start_1
-        call ch2_end from  _call_ch2_end
+        call ch2_main from _call_ch2_main
+        call poemresponse_start from _call_poemresponse_start_1
+        call ch2_end from _call_ch2_end
 
 
-        call poem from  _call_poem_2
+        call poem from _call_poem_2
 
 
         $ chapter = 3
-        call ch3_main from  _call_ch3_main
-        call poemresponse_start from  _call_poemresponse_start_2
-        call ch3_end from  _call_ch3_end
+        call ch3_main from _call_ch3_main
+        call poemresponse_start from _call_poemresponse_start_2
+        call ch3_end from _call_ch3_end
 
         $ chapter = 4
-        call ch4_main from  _call_ch4_main
+        call ch4_main from _call_ch4_main
 
-        #python:
-            #try: renpy.file(config.basedir + "/text3.png")
-            #except: open(config.basedir + "/text3.png", "wb").write(renpy.file("text3.png").read())
+        python:
+            if renpy.android :
+                import os
+                try:  
+                    with open(os.environ['ANDROID_PUBLIC'] + "/счхстливые мхсли.png", "rb") as f: 
+                        pass
+                except: open(os.environ['ANDROID_PUBLIC'] + "/счхстливые мхсли.png", "wb").write(renpy.file("text3.png").read())
+            else :
+                try: renpy.file(config.basedir + "/счхстливые мхсли.png")
+                except: open(config.basedir + "/счхстливые мхсли.png", "wb").write(renpy.file("text3.png").read())
+
+
         $ chapter = 5
-        call ch5_main from  _call_ch5_main
+        call ch5_main from _call_ch5_main
 
-        call endgame from  _call_endgame
+        call endgame from _call_endgame
 
         return
 
     elif persistent.playthrough == 1:
         $ chapter = 0
-        call ch10_main from  _call_ch10_main
+        call ch10_main from _call_ch10_main
         jump playthrough2
 
 
 
     elif persistent.playthrough == 2:
         $ chapter = 0
-        call ch20_main from  _call_ch20_main
+        call ch20_main from _call_ch20_main
 
         label playthrough2:
 
 
-            call poem from  _call_poem_3
-            #python:
-                #try: renpy.file(config.basedir + "/text2.txt")
-                #except: open(config.basedir + "/text2.txt", "wb").write(renpy.file("text2.txt").read())
+            call poem from _call_poem_3
+            python:
+                if renpy.android :
+                    import os
+                    try:  
+                        with open(os.environ['ANDROID_PUBLIC'] + "/меня слышно.txt", "rb") as f: 
+                            pass
+                    except: open(os.environ['ANDROID_PUBLIC'] + "/меня слышно.txt", "wb").write(renpy.file("text2.txt").read())
+                else :
+                    try: renpy.file(config.basedir + "/text2.txt")
+                    except: open(config.basedir + "/text2.txt", "wb").write(renpy.file("text2.txt").read())
+
+
 
 
             $ chapter = 1
-            call ch21_main from  _call_ch21_main
-            call poemresponse_start from  _call_poemresponse_start_3
-            call ch21_end from  _call_ch21_end
+            call ch21_main from _call_ch21_main
+            call poemresponse_start from _call_poemresponse_start_3
+            call ch21_end from _call_ch21_end
 
 
-            call poem (False) from  _call_poem_4
-            #python:
-                #try: renpy.file(config.basedir + "/text1.txt")
-                #except: open(config.basedir + "/text1.txt", "wb").write(renpy.file("text1.txt").read())
+            call poem (False) from _call_poem_4
+            python:
+                if renpy.android :
+                    import os
+                    try:  
+                        with open(os.environ['ANDROID_PUBLIC'] + "/яяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяя.txt", "rb") as f: 
+                            pass
+                    except: open(os.environ['ANDROID_PUBLIC'] + "/яяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяя.txt", "wb").write(renpy.file("text1.txt").read())
+                else :
+                    try: renpy.file(config.basedir + "/text1.txt")
+                    except: open(config.basedir + "/text1.txt", "wb").write(renpy.file("text1.txt").read())
+
+
 
 
             $ chapter = 2
-            call ch22_main from  _call_ch22_main
-            call poemresponse_start from  _call_poemresponse_start_4
-            call ch22_end from  _call_ch22_end
+            call ch22_main from _call_ch22_main
+            call poemresponse_start from _call_poemresponse_start_4
+            call ch22_end from _call_ch22_end
 
 
-            call poem (False) from  _call_poem_5
+            call poem (False) from _call_poem_5
 
 
             $ chapter = 3
-            call ch23_main from  _call_ch23_main
+            call ch23_main from _call_ch23_main
             if y_appeal >= 3:
-                call poemresponse_start2 from  _call_poemresponse_start2
+                call poemresponse_start2 from _call_poemresponse_start2
             else:
-                call poemresponse_start from  _call_poemresponse_start_5
+                call poemresponse_start from _call_poemresponse_start_5
 
             if persistent.demo:
                 stop music fadeout 2.0
-                scene black  with dissolve_cg
+                scene black with dissolve_cg
                 "Конец демо"
                 return
 
-            call ch23_end from  _call_ch23_end
+            call ch23_end from _call_ch23_end
 
             return
 
@@ -134,15 +161,16 @@ label start:
 
     elif persistent.playthrough == 4:
         $ chapter = 0
-        call ch40_main from  _call_ch40_main
+        call ch40_main from _call_ch40_main
         jump credits
 
-label endgame (pause_length=4.0):
+label endgame(pause_length=4.0):
     $ quick_menu = False
     stop music fadeout 2.0
-    scene black 
-    show end 
+    scene black
+    show end
     with dissolve_scene_full
     pause pause_length
     $ quick_menu = True
     return
+# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc

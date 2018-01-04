@@ -16,17 +16,17 @@ image sayori end-glitch:
     "sayori/end-glitch2.png"
 
 label ch40_main:
-    $ s_name = "Sayori"
+    $ s_name = "Сайори"
     stop music fadeout 2.0
     scene bg residential_day
     with dissolve_scene_full
 
     python:
         if not persistent.monika_back:
-            if persistent.monika is None or persistent.monika == "restored":  # TO!DONE: character fix!
+            try:
                 renpy.call_screen("dialog", message="Пожалуйста, не играй с моим сердцем.\nЯ не хочу возвращаться.", ok_action=Return())
                 persistent.monika_back = True
-            else:
+            except:
                 pass
 
     $ delete_character("monika")
@@ -34,7 +34,7 @@ label ch40_main:
     "Сегодня обычный школьный день, точно такой же, как и все остальные."
     "Как всегда, я окружён парочками и группами друзей, которые ходят в школу вместе."
     "Я постоянно говорю себе, что сейчас самое время знакомиться с девушками, или вроде того..."
-    show sayori 1a at t11 
+    show sayori 1a at t11
     s "Хей, [player]..."
     "...Ну, одна девушка уже есть."
     "Это девушка -- Сайори, моя соседка и замечательный друг детства."
@@ -47,7 +47,7 @@ label ch40_main:
     mc "Ну, ты так уже давно..."
     s "Угу!"
     s "Но ты об этом и слова не сказал!"
-    show sayori at s11 
+    show sayori at s11
     s "Несмотря на то, что мы каждый день ходим в школу вместе..."
     mc "Ну, да..."
     mc "Я думал, что это само собой подразумевалось."
@@ -56,13 +56,13 @@ label ch40_main:
     s "Это хорошая мотивация~"
     mc "Ладно, ладно..."
     mc "Я горжусь тобой, Сайори."
-    show sayori at t11 
+    show sayori at t11
     s "Эхехе~"
-    show sayori at thide zorder 1 
-    hide sayori 
+    show sayori zorder 1 at thide
+    hide sayori
     "Вместе мы перешли через дорогу и продолжили путь к школе."
     "Чем ближе мы подходили, тем больше улицы пестрели другими учениками, также идущими в школу."
-    show sayori 3a at t11 zorder 2 
+    show sayori 3a zorder 2 at t11
     s "Кстати, [player]..."
     s "Ты решил, к какому клубу ты присоединишься?"
     mc "Клубу?"
@@ -73,7 +73,7 @@ label ch40_main:
     "...после того, как она открыла свой собственный клуб?"
     mc "...А знаешь, да."
     mc "Я думаю, я выбрал клуб."
-    show sayori at h11 
+    show sayori at h11
     s "Правда?!"
     s "Какой? Скажи мне!"
     mc "Хмм..."
@@ -86,7 +86,7 @@ label ch40_main:
     "Когда Сайори бросает чему-то вызов, она может вершить великие дела."
     "Именно поэтому я подумал о том, чтобы сделать что-то особенное для неё."
 
-    scene bg class_day 
+    scene bg class_day
     with wipeleft_scene
 
     "Очередной школьный день прошёл в мгновение ока."
@@ -94,127 +94,127 @@ label ch40_main:
     mc "Посмотрим..."
     stop music fadeout 2.0
 
-    scene bg corridor 
+    scene bg corridor
     with wipeleft_scene
     "Я вспоминаю номер класса, который я видел на флаере."
     "Иду через всю школу и на верхний этаж -- место, в котором я редко бываю, привыкший к расписанию третьего года старшей школы."
     "Довольно быстро я нашёл нужную комнату."
     "Неуверенно я открываю дверь."
-    scene bg club_day 
+    scene bg club_day
     with wipeleft
     play music t3
     mc "Здравствуйте...?"
-    show sayori 1m at t32 
+    show sayori 1m at t32
     s "Ах!"
     s "[player]...?!"
     s "Ч-что ты тут делаешь?"
     mc "Ну... я просто--"
     "Э? Я бегло осматриваю комнату."
-    show natsuki 3a at f31 
+    show natsuki 3a at f31
     n "Хм."
     n "Значит ты -- [player], о котором постоянно говорит Сайори?"
-    show natsuki at t31 
-    show yuri 2t at f33 
+    show natsuki at t31
+    show yuri 2t at f33
     y "С-спасибо, что заглянули!"
     y "Рада познакомиться, [player]."
     y "Мы -- Литературный Клуб."
     y "Н-надеюсь, вам понравится у нас!"
-    show yuri at t33 
-    show natsuki at f31 
+    show yuri at t33
+    show natsuki at f31
     n "Да ладно, Юри..."
     n "Не будь такой церемонной."
     n "Он может подумать, что мы придирчивые или типа того..."
-    show natsuki at t31 
+    show natsuki at t31
     $ y_name = "Юри"
     $ n_name = "Нацуки"
-    show yuri at f33 
+    show yuri at f33
     y "Ах..."
     y "Извини, Нацуки..."
-    show yuri at t33 
+    show yuri at t33
     "Та, что повыше, судя по всему, Юри, выглядит очень застенчивой по сравнению с остальными."
     "Для сравнения, девушка по имени Нацуки, несмотря на её рост, похоже, более напористая."
     mc "Что ж, рад с вами познакомиться."
     mc "Надеюсь на плодотворную работу с вами."
-    show sayori at f32 
+    show sayori at f32
     s "Р-работу...?"
     s "[player], только не говори мне, что..."
     s "Ты..."
-    show sayori at t32 
+    show sayori at t32
     mc "Именно."
     mc "Я решил вступить в твой клуб, Сайори."
     mc "Литературный Клуб."
     "Глаза Сайори загораются."
-    show sayori at f32 
+    show sayori at f32
     s "...Не может быть."
     s "Не может быть!"
-    show sayori at hf32 
+    show sayori at hf32
     s "Аааахххххх!"
     "Сайори обнимает меня, припрыгивая."
-    show sayori at t32 
+    show sayori at t32
     mc "Х-хей--"
-    show natsuki at f31 
+    show natsuki at f31
     n "Эхехе."
     n "Что ж, раз Сайори так рада, думаю, не так уж и плохо, что ты тут."
-    show natsuki 3a at t31 
-    show yuri at f33 
+    show natsuki 3a at t31
+    show yuri at f33
     y "Кроме того, нас теперь четверо."
     y "А значит, мы можем стать официально признанным клубом."
-    show yuri at t33 
-    show sayori at f32 
+    show yuri at t33
+    show sayori at f32
     s "Я не знаю, что и сказать!"
     s "Это надо отметить!"
-    show sayori at t32 
-    show yuri at f33 
+    show sayori at t32
+    show yuri at f33
     y "Хех."
     y "Какой подходящий день, не так ли?"
-    show yuri 1a at t33 
-    show sayori at f32 
+    show yuri 1a at t33
+    show sayori at f32
     s "Да!"
     s "Ведь Нацуки решила--"
-    show sayori at t32 
-    show natsuki at f31 
+    show sayori at t32
+    show natsuki at f31
     n "Эй, не порть сюрприз!"
-    show natsuki at t31 
-    show sayori at f32 
+    show natsuki at t31
+    show sayori at f32
     s "Эхехе, прости..."
-    show sayori at t32 
-    show natsuki at f31 
+    show sayori at t32
+    show natsuki at f31
     n "Сядьте все к столу, окей?"
-    show natsuki at t31 
-    show yuri at f33 
+    show natsuki at t31
+    show yuri at f33
     y "Как насчёт того, чтобы я приготовила чай?"
-    hide sayori 
-    hide natsuki 
-    hide yuri 
+    hide sayori
+    hide natsuki
+    hide yuri
     with wipeleft
     "У девушек несколько парт стоят рядом, как большой стол."
     "Нацуки и Юри заходят за угол комнаты, где Нацуки берёт завёрнутый во что-то поднос, а Юри открывает шкаф."
     "Всё ещё чувствуя себя неловко, я сажусь рядом с Сайори."
     "Нацуки гордо шествует назад к столу с подносом в руках."
-    show natsuki 2z at t22 zorder 2 
+    show natsuki 2z zorder 2 at t22
     n "Океей, все готовы?"
     n "...Та-даа!"
-    show sayori 4m at t21 zorder 2 
+    show sayori 4m zorder 2 at t21
     s "Воооооу!"
     "Нацуки сняла фольгу с подноса и раскрыла дюжину белых кексиков, украшенных так, чтобы походить на маленьких котиков."
     "Усики были нарисованы глазурью, а в качестве ушек были использованы маленькие кусочки шоколада."
-    show sayori at f21 
+    show sayori at f21
     s "Так миииило~!"
-    show sayori at t21 
+    show sayori at t21
     mc "Вау, выглядит изумительно."
-    show natsuki at f22 
+    show natsuki at f22
     n "Эхехе. Ну знаешь ли."
     n "Попробуй скорее!"
-    show natsuki at t22 
+    show natsuki at t22
     "Сайори первая берёт кекс, затем я."
-    show sayori at f21 
+    show sayori at f21
     s "Вкуснятина!"
-    show sayori at t21 
+    show sayori at t21
     "Сайори говорит с полным ртом и уже умудрилась испачкать лицо в глазури."
     "Я покрутил кекс в своих пальцах, подыскивая наиболее удачное место для укуса."
-    show sayori at thide zorder 1 
-    hide sayori 
-    show natsuki 1c at t32 zorder 2 
+    show sayori zorder 1 at thide
+    hide sayori
+    show natsuki 1c zorder 2 at t32
     "Нацуки молчит."
     "Я замечаю её кроткий взгляд, направленный на меня."
     "Она ждет, пока я попробую?"
@@ -225,23 +225,23 @@ label ch40_main:
     n "Н-ну... конечно, вкусно!"
     n "Я же профи, в конце концов!"
     n "Не нужно меня благодарить или типа того..."
-    show natsuki at thide zorder 1 
-    hide natsuki 
+    show natsuki zorder 1 at thide
+    hide natsuki
     "Пока Нацуки изо всех сил пытается принять комплимент, Юри возвращается к столу с чайным сервизом в руках."
     "Она осторожно расставляет чайные чашки перед каждым из нас перед тем, как поставить заварочный чайник рядом с подносом."
-    show yuri 1a at t11 zorder 2 
+    show yuri 1a zorder 2 at t11
     mc "Вы что, целый чайный сервиз в этой комнате храните?"
     y "Не переживай, учителя дали нам разрешение."
     y "В конце концов, разве не горячая кружка чая лучше всего помогает насладиться хорошей книгой?"
     mc "Ээ... н-наверное..."
-    show natsuki 2y at f31 
+    show natsuki 2y at f31
     n "Эхехе. Уже пытаешься впечатлить нашего нового участника, Юри?"
-    show natsuki at t31 
-    show yuri at f11 
+    show natsuki at t31
+    show yuri at f11
     y "Э?! Э-это не..."
-    show yuri at t11 
-    show natsuki at thide 
-    hide natsuki 
+    show yuri at t11
+    show natsuki at thide
+    hide natsuki
     "Оскорблённая, Юри отворачивается."
     y "Знаешь, я серьёзно..."
     mc "Я верю тебе."
@@ -253,11 +253,11 @@ label ch40_main:
     "Учитывая то, как мало я прочитал за последние пару лет, я не могу ответить на этот вопрос."
     mc "...Мангу..."
     "Я тихо бормочу себе под нос, полушутя."
-    show natsuki 1c at t41 zorder 2 
+    show natsuki 1c zorder 2 at t41
     "Нацуки резко поднимает голову."
     "Это выглядит так, будто она что-то хочет сказать, но молчит."
-    show natsuki at thide zorder 1 
-    hide natsuki 
+    show natsuki zorder 1 at thide
+    hide natsuki
     y "Н-не такой уж и читатель, полагаю..."
     mc "...Нуу, это может измениться..."
     "Что я несу?"
@@ -273,37 +273,37 @@ label ch40_main:
     y "Но вообще, мне нравится много всего."
     y "Не пугайся, если ты не очень много читаешь, ладно?"
     y "Я уверена, что мы сможем найти что-то общее."
-    show yuri at t22 
-    show natsuki 2c at f21 
+    show yuri at t22
+    show natsuki 2c at f21
     n "Хей, Юри..."
-    show natsuki at t21 
-    show yuri at f22 
+    show natsuki at t21
+    show yuri at f22
     y "Э?"
-    show yuri at t22 
-    show natsuki at f21 
+    show yuri at t22
+    show natsuki at f21
     n "Ну, насчёт... знаешь, первого, что он сказал..."
-    show natsuki at t21 
+    show natsuki at t21
     mc "Манга?"
-    show yuri at f22 
+    show yuri at f22
     y "Верно..."
     y "Нацуки, как правило, читает мангу в клубной комнате--"
-    show yuri at t22 
-    show natsuki at f21 
+    show yuri at t22
+    show natsuki at f21
     n "Н-не надо рассказывать об этом!!"
     "По какой-то причине Нацуки выглядит смущённой из-за этого."
     n "Кроме того..."
     n "Манга... это тоже литература, знаешь ли!"
     n "Так что... если [player] хочет почитать что-то из моей манги, не пытайся его останавливать или что-то такое!"
-    show natsuki 1i at t21 
-    show yuri at f22 
+    show natsuki 1i at t21
+    show yuri at f22
     y "Нацуки..."
     y "Я не стала бы так делать."
     y "Однако, было бы неплохо немного расширить наш кругозор..."
     y "Он также может воспользоваться возможностью попробовать что-то новое."
     y "Разве нет, [player]?"
-    show yuri at t33 
-    show natsuki at t32 
-    show sayori 1l at f31 
+    show yuri at t33
+    show natsuki at t32
+    show sayori 1l at f31
     s "М-может--"
     "Чувствуя напряжённость, Сайори вмешивается."
     s "Наверное, каждый из нас может попробовать что-то новое!"
@@ -311,101 +311,101 @@ label ch40_main:
     s "И мы все узнали бы друг друга получше!"
     s "В смысле..."
     s "Это же то, чем и занимается Литературный Клуб... да?"
-    show sayori at t31 
-    show yuri at f33 
+    show sayori at t31
+    show yuri at f33
     y "..."
     y "Не отрицаю..."
-    show yuri at t33 
-    show natsuki at f32 
+    show yuri at t33
+    show natsuki at f32
     n "Ага..."
     n "Ты, как всегда, права, президент."
-    show natsuki at t32 
-    show sayori at f31 
+    show natsuki at t32
+    show sayori at f31
     s "Эхехе~"
-    show sayori at t31 
-    show natsuki at f32 
+    show sayori at t31
+    show natsuki at f32
     n "Это значит, что мне нужно взять роман или вроде того, угу...?"
-    show natsuki at t32 
+    show natsuki at t32
     mc "Ну, значит, будем вдвоём..."
     mc "Я не против, если я не единственный."
-    show sayori at thide 
-    hide sayori 
-    show natsuki at f21 
-    show yuri at t22 
+    show sayori at thide
+    hide sayori
+    show natsuki at f21
+    show yuri at t22
     n "Тогда, Юри..."
-    show natsuki at t21 
-    show yuri at f22 
+    show natsuki at t21
+    show yuri at f22
     y "Э...?"
     y "Я... я должна читать мангу...?"
-    show yuri at t22 
-    show natsuki at f21 
+    show yuri at t22
+    show natsuki at f21
     n "Блин..."
     n "Ты предложила расширять кругозор!"
     n "Ты должна быть более открытой..."
     n "Это немного обидно..."
-    show natsuki at t21 
-    show yuri at f22 
+    show natsuki at t21
+    show yuri at f22
     y "Обидно...?"
     y "Я-я и не подумала..."
     y "..."
     "Юри задумалась с виноватым выражением лица."
     y "Прошу прощения за неуважение к твоим интересам, Нацуки."
     y "Если... если тебе нравится, тогда я уверена, она -- достойная разновидность литературы."
-    show yuri at t22 
-    show natsuki at f21 
+    show yuri at t22
+    show natsuki at f21
     n "...Это просто слова?"
-    show natsuki at t21 
-    show yuri at f22 
+    show natsuki at t21
+    show yuri at f22
     y "Нет..."
     y "Я осознала ошибку."
     y "Так что, если ты решишь начать читать роман..."
     y "...Тогда я в качестве благодарности найду мангу для чтения."
-    show yuri at t22 
-    show natsuki at f21 
+    show yuri at t22
+    show natsuki at f21
     n "Серьёзно?!"
     n "Я, в смысле..."
     n "Мне... приятно, что ты решила сделать такое для меня, Юри."
     n "Не сомневайся, я найду что-то, что тебе по-настоящему понравится, идёт?"
-    show natsuki at t21 
-    show yuri at f22 
+    show natsuki at t21
+    show yuri at f22
     y "Аналогично..."
     y "Пожалуй, зайду-ка я в книжный магазин после клуба."
-    show yuri at t22 
-    show natsuki at f21 
+    show yuri at t22
+    show natsuki at f21
     n "Ты... ты одна?"
-    show natsuki at t21 
-    show yuri at f22 
+    show natsuki at t21
+    show yuri at f22
     y "А-ах--"
     y "Ты... хочешь пойти со мной?"
-    show yuri at t22 
-    show natsuki at f21 
+    show yuri at t22
+    show natsuki at f21
     n "Умм..."
     n "Если ты не против..."
-    show natsuki at t21 
-    show yuri at f22 
+    show natsuki at t21
+    show yuri at f22
     y "Совсем нет!"
     y "Я всегда одна хожу, так что..."
-    show yuri at t22 
-    show natsuki at f21 
+    show yuri at t22
+    show natsuki at f21
     n "Да, я тоже..."
-    show natsuki at t21 
-    show sayori 4s at l41 
+    show natsuki at t21
+    show sayori 4s at l41
     s "Это так мило~!"
     mc "Сайори, заткнись..."
-    show sayori at lhide 
-    hide sayori 
-    show natsuki at f21 
+    show sayori at lhide
+    hide sayori
+    show natsuki at f21
     n "Там я покажу тебе какую-нибудь мангу, хорошо?"
-    show natsuki at t21 
-    show yuri at f22 
+    show natsuki at t21
+    show yuri at f22
     y "Да."
     y "Буду рада."
-    show natsuki at thide 
-    show yuri at thide 
-    hide natsuki 
-    hide yuri 
+    show natsuki at thide
+    show yuri at thide
+    hide natsuki
+    hide yuri
     "Нацуки и Юри начали убирать еду."
-    show sayori 1q at t11 
+    show sayori 1q at t11
     s "Эхехе~"
     s "Кажется, встреча закончена, ага?"
     mc "Да, по всей видимости..."
@@ -439,20 +439,20 @@ label ch40_main:
     return
 
     label ch40_clearnormal:
-        show sayori 1a at t11 zorder 2 
+        show sayori 1a zorder 2 at t11
         s "Я хочу поблагодарить тебя за то, что ты избавился от Моники."
         play music hb
         show black:
-            alpha 0.5 
+            alpha 0.5
             parallel:
-                0.36 
-                alpha 0.5 
+                0.36
+                alpha 0.5
                 repeat
             parallel:
-                0.49 
-                alpha 0.475 
+                0.49
+                alpha 0.475
                 repeat
-        #TODO<renpy.ast.ShowLayer object at 0x044D4538>
+
         s "Верно..."
         s "Я знаю обо всём, что она сделала."
         s "Может, это потому, что я теперь президент."
@@ -468,34 +468,34 @@ label ch40_main:
         stop sound
         hide screen tear
         show room_glitch zorder 1:
-            xoffset -5 
-            0.1 
-            xoffset 5 
-            0.1 
-            linear 0.1 alpha 0.6 
-            linear 0.1 alpha 0.8 
-            0.1 
-            alpha 0 
+            xoffset -5
+            0.1
+            xoffset 5
+            0.1
+            linear 0.1 alpha 0.6
+            linear 0.1 alpha 0.8
+            0.1
+            alpha 0
         s "Сейчас мы только вдвоём.{fast}"
-        hide room_glitch 
+        hide room_glitch
         s "И ты сделал меня самой счастливой девушкой на свете."
         s "Я не могу дождаться возможности проводить так каждый день..."
         s "С тобой."
         play sound "sfx/s_kill_glitch1.ogg"
         show room_glitch zorder 1:
-            xoffset -10 
-            0.1 
-            xoffset 0 
-            0.1 
-            linear 0.1 alpha 0.6 
-            linear 0.1 alpha 0.8 
-            0.1 
-            alpha 1.0 
+            xoffset -10
+            0.1
+            xoffset 0
+            0.1
+            linear 0.1 alpha 0.6
+            linear 0.1 alpha 0.8
+            0.1
+            alpha 1.0
         pause 0.3
         stop sound
         s "Навсегда..."
-        hide sayori 
-        show sayori 1a at face onlayer screens zorder 101 
+        hide sayori
+        show sayori 1a onlayer screens zorder 101 at face
         s "Н"
         s "а"
         s "в"
@@ -510,9 +510,9 @@ label ch40_main:
         window show(None)
         stop music
         call screen dialog("Нет...", ok_action=Return())
-        #TODO<renpy.ast.ShowLayer object at 0x044DA340>
-        hide black 
-        show sayori end-glitch onlayer screens 
+
+        hide black
+        show sayori end-glitch onlayer screens
         s "...Э?"
         s "Ч-что происходит...?"
         call screen dialog("Я не позволю тебе навредить ему.", ok_action=Return())
@@ -521,7 +521,7 @@ label ch40_main:
         show screen tear(20, 0.1, 0.1, 0, 40)
         window hide(None)
         play sound "sfx/s_kill_glitch1.ogg"
-        hide sayori onlayer screens 
+        hide sayori onlayer screens
         pause 0.35
         stop sound
         hide screen tear
@@ -540,7 +540,7 @@ label ch40_main:
         pause 0.35
         stop sound
         hide screen tear
-        scene black 
+        scene black
         pause 3.0
         return
 
@@ -569,9 +569,10 @@ label ch40_main:
         s "Заходи иногда, ладно?"
         s "Мы всегда здесь, для тебя."
         s "Мы..."
-        scene black  with dissolve_cg
+        scene black with dissolve_cg
         s "Мы все любим тебя."
         stop music fadeout 2.0
-        scene black 
+        scene black
         with Dissolve(2.0)
         return
+# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc

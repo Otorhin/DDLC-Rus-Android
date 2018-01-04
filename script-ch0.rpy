@@ -5,10 +5,15 @@ label ch0_main:
     play music t2
 
     python:
-        if persistent.monika is None or persistent.monika == "restored":
-            pass
-        else:
-            renpy.jump("ch0_kill")  # TO!DONE: character fix!
+        if renpy.android :
+            import os
+            try:  
+                with open(os.environ['ANDROID_PUBLIC'] + "/characters/monika.chr", "rb") as f: 
+                    pass
+            except: renpy.jump("ch0_kill")
+        else :
+            try: renpy.file("../characters/monika.chr")
+            except: renpy.jump("ch0_kill")
 
     $ restore_all_characters()
     s "Эээээээээээй!!"
@@ -19,32 +24,32 @@ label ch0_main:
     "Но если она так и будет бегать за мной, как сейчас, то будет лучше просто убежать подальше."
     "В итоге, я просто вздохнул и встал напротив перехода, дав Сайори догнать меня."
     $ s_name = "Сайори"
-    show sayori 4p at t11 zorder 2 
+    show sayori 4p zorder 2 at t11
     s "Хааааа... Хааааа..."
     s "Я опять проспала!"
     s "Но я догнала тебя в этот раз!"
     mc "Возможно, но только потому, что я решил остановиться и подождать тебя."
-    show sayori at s11 
+    show sayori at s11
     s "Ээээээ, ты сказал это так, словно хотел проигнорировать меня!"
     s "Это грубо, [player]!"
     mc "Что ж, если люди будут таращиться на тебя из-за того, что ты странно себя ведешь, тогда я не хочу, чтобы они подумали, что мы пара или что-то вроде того."
-    show sayori at t11 zorder 2 
+    show sayori zorder 2 at t11
     s "Ладно, ладно."
     s "Но всё-таки ты меня подождал."
     s "Я думаю, что ты не сможешь быть букой, даже если захочешь~"
     mc "Как скажешь, Сайори..."
     s "Хехехе~"
-    show sayori at thide zorder 1 
-    hide sayori 
+    show sayori zorder 1 at thide
+    hide sayori
     "Мы вместе перешли дорогу и продолжили свой путь к школе."
     "По мере приближения, улицы всё больше заполняются другими учениками, совершавшими свой повседневный поход на учебу."
-    show sayori 3a at t11 zorder 2 
+    show sayori 3a zorder 2 at t11
     s "Кстати, [player]..."
     s "Ты уже решил, в какой клуб вступишь?"
     mc "Клуб?"
     mc "Я уже говорил тебе, я не заинтересован во вступлении в клубы."
     mc "Даже не искал ещё."
-    show sayori at s11 
+    show sayori at s11
     s "Ааа? Это не правда!"
     s "Ты сказал мне, что вступишь в клуб в этом году!"
     mc "Разве...?"
@@ -61,13 +66,13 @@ label ch0_main:
     mc "Хоть ничего и не обещаю."
     s "Но ты можешь, по крайней мере, обещать мне, что хоть немного постараешься?"
     mc "Да, думаю, это я могу пообещать."
-    show sayori at t11 zorder 2 
+    show sayori zorder 2 at t11
     s "Ееей~!"
     "И почему я позволил себя отчитывать такой беспечной девчонке?"
     "Более того, я поражен, что вообще слушаю её."
     "Но всё-таки, глядя на то, как сильно она за меня переживает, так или иначе захочется ей помочь -- даже если она преувеличивает."
 
-    scene bg class_day 
+    scene bg class_day
     with wipeleft_scene
 
     "Этот день в школе был таким же обычным, как и всегда, и закончился он прежде, чем я опомнился."
@@ -77,7 +82,7 @@ label ch0_main:
     "Похоже, у меня нет выбора, кроме как начать с аниме клуба..."
 
     s "Привееет?"
-    show sayori 1b at t11 zorder 2 
+    show sayori 1b zorder 2 at t11
     mc "Сайори...?"
     "Сайори, должно быть, зашла в класс, пока я витал в облаках."
     "Я оглянулся и понял, что я остался в классе один."
@@ -90,7 +95,7 @@ label ch0_main:
     mc "Сайори..."
     s "Дааа??"
     mc "...Ни при каком раскладе я не вступлю в твой клуб."
-    show sayori at s11 
+    show sayori at s11
     s "Эээээээ?! Злюка!"
     "Сайори -- вице-президент Литературного Клуба."
     "Не то чтобы я знал, что она интересуется литературой."
@@ -98,7 +103,7 @@ label ch0_main:
     "А поскольку она была первой, кто заинтересовался клубом, после основателя, она и получила титул \"вице-президент\"."
     "Не говоря уже о том, что мой интерес к литературе ещё меньше."
     mc "Ага. Я пойду в аниме клуб."
-    show sayori at t11 zorder 2 
+    show sayori zorder 2 at t11
     s "Пожалуйста, пойдём?"
     mc "А почему тебя это вообще так волнует?"
     s "Нууу..."
@@ -109,148 +114,148 @@ label ch0_main:
     "Не могу сказать, действительно ли Сайори настолько ветреная, или она планировала это с самого начала."
     "Я испустил длинный вздох."
     mc "Хорошо... я загляну ради кексов, ладно?"
-    show sayori at h11 
+    show sayori at h11
     s "Да! Пошли~!"
 
     stop music fadeout 2.0
 
-    scene bg corridor 
+    scene bg corridor
     with wipeleft_scene
 
     "Итак, сегодня знаменуется день, когда я продал свою душу за кексы."
     "Я удручённо следовал за Сайори по школе и лестнице -- в часть школы, которую я редко посещал, используемую в основном третьегодками и для мероприятий."
     "Сайори, полная энергии, распахнула дверь комнаты."
 
-    scene bg club_day 
+    scene bg club_day
     with wipeleft
     play music t3
-    show sayori 4 at l41 
+    show sayori 4 at l41
     s "Эй, все! Новобранец здесь~!"
     mc "Я же говорил тебе, не называй меня 'Новобранец'--"
-    show sayori at lhide 
-    hide sayori 
+    show sayori at lhide
+    hide sayori
     "Хм? Я оглядел комнату."
-    show yuri 1a at t11 zorder 2 
+    show yuri 1a zorder 2 at t11
     y "Добро пожаловать в Литературный Клуб. Рада с тобой встретиться."
     y "Сайори всегда хорошо отзывалась о тебе."
-    show yuri at t22 zorder 2 
-    show natsuki 4c at t21 zorder 2 
+    show yuri zorder 2 at t22
+    show natsuki 4c zorder 2 at t21
     n "Серьёзно? Ты привела парня?"
     n "Это убьёт всю атмосферу."
-    show yuri at t33 zorder 2 
-    show natsuki at t32 zorder 2 
-    show monika 1k at t31 zorder 2 
+    show yuri zorder 2 at t33
+    show natsuki zorder 2 at t32
+    show monika 1k zorder 2 at t31
     m "Ох, [player]! Что за приятный сюрприз!"
     m "Добро пожаловать в клуб!"
-    show monika 1a 
+    show monika 1a
     mc "..."
     "В такой ситуации я потерял дар речи."
     "Этот клуб..."
     "{i}...полон невероятно миленьких девушек!!{/i}"
 
-    show monika at thide zorder 1 
-    show yuri at thide zorder 1 
-    show natsuki at f32 zorder 3 
-    hide monika 
-    hide yuri 
+    show monika zorder 1 at thide
+    show yuri zorder 1 at thide
+    show natsuki zorder 3 at f32
+    hide monika
+    hide yuri
 
     n "На что уставился?"
     n "Если хочешь сказать что-то -- скажи."
     mc "П-простите..."
-    show natsuki at t32 zorder 2 
-    show yuri 2l at f33 zorder 3 
+    show natsuki zorder 2 at t32
+    show yuri 2l zorder 3 at f33
     y "Нацуки..."
     $ n_name = 'Нацуки'
-    show yuri at t33 zorder 2 
-    show natsuki at f32 zorder 3 
+    show yuri zorder 2 at t33
+    show natsuki zorder 3 at f32
     n "Хмпф."
-    show natsuki at t32 zorder 2 
+    show natsuki zorder 2 at t32
 
     "Девушка с кислой миной, чье имя, судя по всему, Нацуки -- единственная, кого я не заметил."
     "Судя по её маленькой фигуре, она, скорее всего, первогодка."
     "Также она, по словам Сайори, та, кто сделала кексы."
 
-    show sayori 2q at f31 zorder 3 
+    show sayori 2q zorder 3 at f31
     s "Можешь просто игнорировать её, когда она начинает капризничать~"
     "Сайори сказала это тихо мне на ухо, затем повернулась к другим девушкам."
     s "Итак! Это Нацуки, всегда полна энергии."
     s "А это Юри, она умнейшая в клубе!"
     $ y_name = 'Юри'
-    show sayori at t31 zorder 2 
-    show yuri at f33 zorder 3 
+    show sayori zorder 2 at t31
+    show yuri zorder 3 at f33
     y "Н-не надо так говорить..."
     "Похоже, наиболее взрослой и робкой среди всех Юри приходится тяжело с кем-то вроде Нацуки."
-    show yuri at t33 zorder 2 
+    show yuri zorder 2 at t33
     mc "Эх... Что ж, приятно познакомиться с вами обеими."
-    show yuri at thide zorder 1 
-    show natsuki at thide zorder 1 
-    hide yuri 
-    hide natsuki 
-    show sayori at f31 zorder 3 
+    show yuri zorder 1 at thide
+    show natsuki zorder 1 at thide
+    hide yuri
+    hide natsuki
+    show sayori zorder 3 at f31
     s "И, похоже, ты уже знаком с Моникой, так?"
     $ m_name = 'Моника'
-    show sayori at t31 zorder 2 
-    show monika 2a at f32 zorder 3 
+    show sayori zorder 2 at t31
+    show monika 2a zorder 3 at f32
     m "Верно."
     m "Приятно увидеть тебя снова, [player]."
-    show monika 5a at hop 
+    show monika 5a at hop
     "Моника приветливо улыбается."
     "Мы действительно друг друга знаем, мы редко разговаривали, но в прошлом году мы были в одном классе."
     "Умная, красивая, спортивная -- Моника была, пожалуй, самой популярной девушкой в классе."
     "В общем, абсолютно не мой уровень."
     "Поэтому её искренняя улыбка заставляет меня чувствовать себя немного..."
     mc "Т-тебя тоже, Моника."
-    show monika at thide zorder 1 
-    hide monika 
-    show sayori at f31 zorder 3 
+    show monika zorder 1 at thide
+    hide monika
+    show sayori zorder 3 at f31
     s "Проходи, присаживайся, [player]! Мы освободили для тебя место за столом, поэтому можешь сесть рядом со мной или Моникой."
     s "Я принесу кексики~"
-    show sayori at t31 zorder 2 
-    show natsuki 1e at f32 zorder 3 
+    show sayori zorder 2 at t31
+    show natsuki 1e zorder 3 at f32
     n "Эй! Я их сделала, я и принесу!"
-    show natsuki at t32 zorder 2 
-    show sayori at f31 zorder 3 
+    show natsuki zorder 2 at t32
+    show sayori zorder 3 at f31
     s "Прости, я немного увлеклась~"
-    show sayori at t31 zorder 2 
-    show yuri 1a at f33 zorder 3 
+    show sayori zorder 2 at t31
+    show yuri 1a zorder 3 at f33
     y "В таком случае, как насчёт чая?"
-    hide sayori 
-    hide natsuki 
-    hide yuri 
+    hide sayori
+    hide natsuki
+    hide yuri
     with wipeleft
     "Девушки сдвинули несколько парт, чтобы составить из них стол."
     "Как и упоминала Сайори, они расширили его таким образом, чтобы появилось одно место рядом с Моникой и одно около Сайори."
     "Нацуки и Юри отошли в угол комнаты, где Нацуки взяла завёрнутый в фольгу поднос, а Юри открыла шкафчик."
     "Всё ещё чувствуя себя неловко, я занял место напротив Сайори."
     "Нацуки гордо прошла к столу, неся в руках поднос."
-    show natsuki 2z at t32 zorder 2 
+    show natsuki 2z zorder 2 at t32
     n "Итаак, вы готовы?"
     n "...Та-даа!"
-    show sayori 4m at t31 zorder 2 
-    show monika 2d at t33 zorder 2 
+    show sayori 4m zorder 2 at t31
+    show monika 2d zorder 2 at t33
     s "Воооооу!"
     "Нацуки сняла фольгу с подноса и раскрыла дюжину белых кексиков, украшенных так, чтобы походить на маленьких котиков."
     "Усики были нарисованы глазурью, а в качестве ушек были использованы маленькие кусочки шоколада."
-    show sayori at f31 zorder 3 
+    show sayori zorder 3 at f31
     s "Так миииило~!"
-    show sayori at t31 zorder 2 
-    show monika at f33 zorder 3 
+    show sayori zorder 2 at t31
+    show monika zorder 3 at f33
     m "Я и не знала, что ты так хороша в выпечке, Нацуки!"
-    show monika at t33 zorder 2 
-    show natsuki at f32 zorder 3 
+    show monika zorder 2 at t33
+    show natsuki zorder 3 at f32
     n "Эхехе. Ну, теперь знаешь."
     n "Просто поторопись и возьми один!"
     "Сайори берёт первой, потом Моника. Я следую их примеру."
-    show natsuki at t32 zorder 2 
-    show sayori at f31 zorder 3 
+    show natsuki zorder 2 at t32
+    show sayori zorder 3 at f31
     s "Вкуснятина!"
     "Сайори говорит с полным ртом и уже умудрилась испачкать лицо в глазури."
     "Я покрутил кекс в своих пальцах, подыскивая наиболее удачное место для укуса."
-    show sayori at thide zorder 1 
-    show monika at thide zorder 1 
-    hide sayori 
-    hide monika 
-    show natsuki 1c at t32 zorder 2 
+    show sayori zorder 1 at thide
+    show monika zorder 1 at thide
+    hide sayori
+    hide monika
+    show natsuki 1c zorder 2 at t32
     "Нацуки молчит."
     "Я замечаю её кроткий взгляд, направленный на меня."
     "Она ждет, пока я попробую?"
@@ -260,26 +265,26 @@ label ch0_main:
     mc "Спасибо, Нацуки."
     n "П-Почему ты меня благодаришь? Н-не то чтобы я...!"
     "{i}(Кажется, я слышал это где-то ранее...?){/i}"
-    show natsuki at s32 
+    show natsuki at s32
     n "...Сделала это для тебя, или что-то вроде такого."
     mc "Мм? Я думал, ты, по сути, это и сделала. Сайори сказала..."
-    show natsuki at t32 zorder 2 
+    show natsuki zorder 2 at t32
     n "Нуу, может быть!"
     n "Но не для, н-ну, знаешь, {i}тебя!{/i} Дурак..."
     mc "Ладно, ладно..."
-    show natsuki at thide zorder 1 
-    hide natsuki 
+    show natsuki zorder 1 at thide
+    hide natsuki
     "Я сдался перед странной логикой Нацуки и прервал разговор."
     "Юри вернулась к столу, принеся сервиз."
     "Она аккуратно расставила чашки напротив каждого из нас, а затем поставила чайник рядом с кексами."
-    show yuri 1a at t21 zorder 2 
+    show yuri 1a zorder 2 at t21
     mc "Вы что, целый чайный сервиз в этой комнате храните?"
     y "Не переживай, учителя дали нам разрешение."
     y "В конце концов, разве не горячая кружка чая лучше всего помогает насладиться хорошей книгой?"
     mc "Ээ... н-наверное..."
-    show monika 4a at t22 zorder 2 
+    show monika 4a zorder 2 at t22
     m "Эхехе, не пугайся, Юри просто старается впечатлить тебя."
-    show yuri at h21 
+    show yuri at h21
     y "Ээ?! Э-это не..."
     "Юри обиженно отвернулась."
     y "Я хотела сказать, на самом деле..."
@@ -288,9 +293,9 @@ label ch0_main:
     y "Я рада..."
     "Юри с облегчением улыбнулась."
     "Моника подняла брови, а затем улыбнулась мне."
-    show yuri at thide zorder 1 
-    hide yuri 
-    show monika at t11 zorder 2 
+    show yuri zorder 1 at thide
+    hide yuri
+    show monika zorder 2 at t11
     m "Итак, что ты решил по поводу Литературного Клуба?"
     mc "Ух..."
     "Я боялся этого вопроса."
@@ -299,7 +304,7 @@ label ch0_main:
     m "Всё в порядке! Не стесняйся!"
     m "Мы позаботимся о том, чтобы ты чувствовал себя как дома, хорошо?"
     m "Мой долг, как президента Литературного Клуба, позаботиться о том, чтобы клуб был веселым и интересным для каждого!"
-    show monika 1a 
+    show monika 1a
     mc "Моника, я удивлён."
     mc "Как ты вообще решила основать свой собственный клуб?"
     mc "Ты вполне могла бы занять одну из лидирующих должностей в любом из крупных клубов."
@@ -309,15 +314,15 @@ label ch0_main:
     m "Такое ощущение, словно в них нет ничего, кроме споров о бюджете и работы на публику, а также подготовки к мероприятиям..."
     m "Я бы лучше предпочла заняться чем-то, что нравится лично мне, и сделать из этого что-то особенное."
     m "И если это вовлечет других в литературу, то тогда я точно исполню эту мечту!"
-    show monika 1a 
-    show sayori 3q at t31 zorder 2 
+    show monika 1a
+    show sayori 3q zorder 2 at t31
     s "Моника и правда прекрасный лидер!"
-    show yuri 1 at t33 zorder 2 
+    show yuri 1 zorder 2 at t33
     "Юри тоже кивает в согласии."
-    show sayori at thide zorder 1 
-    show yuri at thide zorder 1 
-    hide sayori 
-    hide yuri 
+    show sayori zorder 1 at thide
+    show yuri zorder 1 at thide
+    hide sayori
+    hide yuri
     mc "Тогда я удивлён, что в клубе всё ещё не так много людей."
     mc "Сложно, должно быть, основывать новый клуб."
     m "Можно сказать и так."
@@ -327,40 +332,40 @@ label ch0_main:
     m "Но, благодаря этому, школьные мероприятия, как, например, фестиваль, становятся гораздо важнее."
     m "Я уверена, что мы все действительно сможем развить этот клуб до того, как выпустимся!"
     m "Не так ли, ребята?"
-    show monika 2a at t22 zorder 2 
-    show sayori 4r at t21 zorder 2 
+    show monika 2a zorder 2 at t22
+    show sayori 4r zorder 2 at t21
     s "Даа!"
-    show monika at t33 zorder 2 
-    show sayori at t32 zorder 2 
-    show yuri 1a at t31 zorder 2 
+    show monika zorder 2 at t33
+    show sayori zorder 2 at t32
+    show yuri 1a zorder 2 at t31
     y "Выложимся на полную."
-    show monika at t44 zorder 2 
-    show sayori at t43 zorder 2 
-    show yuri at t42 zorder 2 
-    show natsuki 4d at t41 zorder 2 
+    show monika zorder 2 at t44
+    show sayori zorder 2 at t43
+    show yuri zorder 2 at t42
+    show natsuki 4d zorder 2 at t41
     n "Ещё бы!"
     "Все восторженно соглашаются."
     "Такие разные девушки, но все заинтересованы в одной цели..."
     "Моника, должно быть, действительно постаралась, чтобы найти этих троих."
     "Может быть, поэтому они так рады вступлению нового участника."
     "Хотя я всё ещё не знаю, смогу ли я поддерживать такой же уровень энтузиазма насчёт литературы..."
-    show sayori at thide zorder 1 
-    show monika at thide zorder 1 
-    show natsuki at thide zorder 1 
-    show yuri at t32 zorder 2 
-    hide sayori 
-    hide monika 
-    hide natsuki 
+    show sayori zorder 1 at thide
+    show monika zorder 1 at thide
+    show natsuki zorder 1 at thide
+    show yuri zorder 2 at t32
+    hide sayori
+    hide monika
+    hide natsuki
     y "Итак, [player], что ты любишь читать?"
     mc "Нуу... эм..."
     "Учитывая то, как мало я прочитал за последние пару лет, я не могу ответить на этот вопрос."
     mc "...Мангу..."
     "Я тихо бормочу себе под нос, полушутя."
-    show natsuki 1c at t41 zorder 2 
+    show natsuki 1c zorder 2 at t41
     "Нацуки резко поднимает голову."
     "Это выглядит так, будто она что-то хочет сказать, но молчит."
-    show natsuki at thide zorder 1 
-    hide natsuki 
+    show natsuki zorder 1 at thide
+    hide natsuki
     y "Н-не такой уж и читатель, полагаю..."
     mc "...Нуу, это может измениться..."
     "Что я несу?"
@@ -380,58 +385,58 @@ label ch0_main:
     mc "О, я однажды читал ужастик..."
     "Я в отчаянии хватаюсь за что-то, о чём знаю хоть немного."
     "При таком раскладе, Юри могла бы с таким же успехом вести диалог с камнем."
-    show monika 1d at f33 zorder 3 
+    show monika 1d zorder 3 at f33
     m "Серьёзно? Не ожидала подобного от тебя, Юри."
     m "От кого-то настолько утонченного..."
-    show monika at t33 zorder 2 
-    show yuri at f32 zorder 3 
+    show monika zorder 2 at t33
+    show yuri zorder 3 at f32
     y "Полагаю, можно и так сказать."
     y "Но если история заставляет меня задуматься, или затягивает меня в другой мир, тогда я действительно не могу оторваться."
     y "Сюрреалистичному хоррору частенько лучше всего удается заставить читателя задуматься о собственном взгляде на мир, пусть и на короткое время."
-    show yuri at t32 zorder 2 
-    show natsuki 5q at f31 zorder 3 
+    show yuri zorder 2 at t32
+    show natsuki 5q zorder 3 at f31
     n "Угх, ненавижу ужастики..."
-    show natsuki at t31 zorder 2 
-    show yuri at f32 zorder 3 
+    show natsuki zorder 2 at t31
+    show yuri zorder 3 at f32
     y "Ох? Почему?"
-    show yuri at t32 zorder 2 
-    show natsuki at f31 zorder 3 
+    show yuri zorder 2 at t32
+    show natsuki zorder 3 at f31
     n "Нуу, я просто..."
     "Нацуки на долю секунды стрельнула в меня глазами."
     n "Не важно."
-    show natsuki at t31 zorder 2 
-    show monika at f33 zorder 3 
+    show natsuki zorder 2 at t31
+    show monika zorder 3 at f33
     m "И правда, ты ведь обычно пишешь о более миленьких вещах, не так ли, Нацуки?"
-    show monika at t33 zorder 2 
-    show natsuki 1o at f31 zorder 3 
+    show monika zorder 2 at t33
+    show natsuki 1o zorder 3 at f31
     n "Ч-Что?"
     n "Почему ты так подумала?"
-    show natsuki at t31 zorder 2 
-    show monika at f33 zorder 3 
+    show natsuki zorder 2 at t31
+    show monika zorder 3 at f33
     m "Ты оставила кусок смятой бумаги после последнего собрания клуба."
     m "Похоже на то, что ты работаешь над поэмой под названием--"
-    show monika at t33 zorder 2 
-    show natsuki 1p at f31 zorder 3 
+    show monika zorder 2 at t33
+    show natsuki 1p zorder 3 at f31
     n "Не говори об этом вслух!!"
     n "И верни мне!"
-    show natsuki at t31 zorder 2 
-    show monika at f33 zorder 3 
+    show natsuki zorder 2 at t31
+    show monika zorder 3 at f33
     m "Хорошо, хорошо~"
-    show monika at thide zorder 1 
-    show yuri at thide zorder 1 
-    hide monika 
-    hide yuri 
-    show natsuki 1r at t42 zorder 2 
-    show sayori 4q at l41 behind natsuki 
+    show monika zorder 1 at thide
+    show yuri zorder 1 at thide
+    hide monika
+    hide yuri
+    show natsuki 1r zorder 2 at t42
+    show sayori 4q behind natsuki at l41
     s "Эхехе, твои кексики, твои поэмы..."
     s "Всё, что ты делаешь, настолько же миленько, как и ты сама~"
-    show sayori at t21 behind natsuki 
+    show sayori behind natsuki at t21
     "Сайори подкралась за спину Нацуки и закинула свои руки ей на плечи."
-    show natsuki at h42 
+    show natsuki at h42
     n "{i}Я не миленькая!! {/i}"
-    show natsuki at t11 zorder 2 
-    show sayori at thide zorder 1 
-    hide sayori 
+    show natsuki zorder 2 at t11
+    show sayori zorder 1 at thide
+    hide sayori
     mc "Нацуки, ты пишешь свои собственные поэмы?"
     n "Ээ? Нуу, иногда, я думаю."
     n "Какая тебе разница?"
@@ -441,75 +446,75 @@ label ch0_main:
     "Нацуки отвела взгляд."
     n "Они тебе... не понравятся..."
     mc "Аа... ещё не очень уверенный писатель?"
-    show yuri 2f at t31 zorder 2 
+    show yuri 2f zorder 2 at t31
     y "Я понимаю, что чувствует Нацуки."
     y "Чтобы делиться при таком опыте письма, нужно куда больше, чем просто уверенность."
     y "Истинная форма писательства -- это когда пишешь для себя самого."
     y "Нужно хотеть открыться своим читателям, обнажать свои уязвимости и показать им даже самые далекие горизонты своего сердца."
-    show natsuki at thide zorder 1 
-    hide natsuki 
-    show monika 2a at t33 zorder 2 
+    show natsuki zorder 1 at thide
+    hide natsuki
+    show monika 2a zorder 2 at t33
     m "У тебя тоже есть писательский опыт, Юри?"
     m "Может, если ты поделишься некоторыми своими работами, ты сможешь подать пример и помочь Нацуки почувствовать себя более уверенно, чтобы поделиться своими."
-    show yuri at s31 
+    show yuri at s31
     y "..."
     mc "Похоже, с Юри та же проблема..."
-    show sayori 2g at t32 zorder 2 
+    show sayori 2g zorder 2 at t32
     s "Ууу... Я бы хотела почитать поэмы каждого..."
-    show sayori at thide zorder 1 
-    show yuri at thide zorder 1 
-    show monika at thide zorder 1 
-    hide sayori 
-    hide yuri 
-    hide monika 
+    show sayori zorder 1 at thide
+    show yuri zorder 1 at thide
+    show monika zorder 1 at thide
+    hide sayori
+    hide yuri
+    hide monika
     "Некоторое время мы сидим молча."
-    show monika 5a at f32 zorder 3 
+    show monika 5a zorder 3 at f32
     m "Ладно!"
     m "Ребята, у меня есть идея~"
-    show yuri 3e at t31 zorder 2 
-    show natsuki 2k at t33 zorder 2 
+    show yuri 3e zorder 2 at t31
+    show natsuki 2k zorder 2 at t33
     ny "...?"
     "Нацуки и Юри с недоумением смотрят на Монику."
     m "Давайте все пойдём домой и напишем наши собственные поэмы!"
     m "И тогда, когда встретимся в следующий раз, мы все друг с другом ими поделимся."
     m "В таком случае все будут равны!"
-    show monika 2a at t32 zorder 2 
-    show natsuki at f33 zorder 3 
+    show monika 2a zorder 2 at t32
+    show natsuki zorder 3 at f33
     n "Э-эм..."
-    show natsuki at t33 zorder 2 
-    show yuri 3v at f31 zorder 3 
+    show natsuki zorder 2 at t33
+    show yuri 3v zorder 3 at f31
     y "..."
-    show natsuki at t44 zorder 2 
-    show monika at t43 zorder 2 
-    show yuri at t42 zorder 2 
-    show sayori 4r at l41 
+    show natsuki zorder 2 at t44
+    show monika zorder 2 at t43
+    show yuri zorder 2 at t42
+    show sayori 4r at l41
     s "Даааа! Сделаем это!"
-    show monika at f43 zorder 3 
+    show monika zorder 3 at f43
     m "Плюс ко всему, теперь у нас новый член, я думаю, это поможет нам всем почувствовать себя покомфортнее друг с другом и укрепить наши узы в клубе."
     m "Не так ли, [player]?"
-    show monika at t43 zorder 2 
+    show monika zorder 2 at t43
     "Моника горячо улыбнулась мне ещё раз."
     mc "Погоди... всё ещё осталась одна проблема."
-    show monika at f43 zorder 3 
+    show monika zorder 3 at f43
     m "Мм? Какая?"
     "Теперь, когда мы вернулись к изначальному вопросу о моём вступлении в клуб, я выпалил всё то, что занимало мои мысли всё это время."
-    show monika at t43 zorder 2 
+    show monika zorder 2 at t43
     mc "Я не говорил, что вступлю в этот клуб!"
     mc "Сайори уговорила меня заглянуть сюда, но я ещё не принимал какого-либо решения."
     mc "У меня ещё остались другие клубы, которые я могу посмотреть, и... эм..."
-    show monika 1g 
-    show sayori 1g 
-    show natsuki 4g 
-    show yuri 2e 
+    show monika 1g
+    show sayori 1g
+    show natsuki 4g
+    show yuri 2e
     "Я потерял ход мыслей."
     "Все четыре девушки смотрели на меня подавленными взглядами."
-    show monika at s43 
+    show monika at s43
     m "Н-но..."
-    show yuri at s42 
+    show yuri at s42
     y "Извини, я считала..."
-    show natsuki at s44 
+    show natsuki at s44
     n "Хмпф."
-    show sayori at s41 
+    show sayori at s41
     s "[player]..."
     mc "В-вы все..."
     "Я... я беззащитен против этих девушек."
@@ -518,72 +523,72 @@ label ch0_main:
     mc "...Хорошо."
     mc "Ладно, тогда я решил."
     mc "Я вступлю в Литературный Клуб."
-    show monika 1e at t43 zorder 2 
-    show yuri 3f at t42 zorder 2 
-    show natsuki 1k at t44 zorder 2 
-    show sayori 4b at t41 zorder 2 
+    show monika 1e zorder 2 at t43
+    show yuri 3f zorder 2 at t42
+    show natsuki 1k zorder 2 at t44
+    show sayori 4b zorder 2 at t41
     "Поочередно в глазах девчат зажигается огонёк."
-    show sayori at h41 
+    show sayori at h41
     s "Даааа! Я так счастливааа~"
     "Сайори обхватила меня руками, прыгая на месте."
     mc "Э-эй--"
-    show yuri at f42 zorder 3 
+    show yuri zorder 3 at f42
     y "Ты и правда напугал меня на мгновение..."
-    show yuri at t42 zorder 2 
-    show natsuki at f44 zorder 3 
+    show yuri zorder 2 at t42
+    show natsuki zorder 3 at f44
     n "Если бы ты и правда пришёл сюда только за кексами, это и правда было бы супер-убого."
-    show natsuki at t44 zorder 2 
-    show monika at f43 zorder 3 
+    show natsuki zorder 2 at t44
+    show monika zorder 3 at f43
     m "Значит, теперь это официально!"
     m "Добро пожаловать в Литературный Клуб!"
-    show monika at t43 zorder 2 
+    show monika zorder 2 at t43
     mc "Ох... спасибо, наверное."
-    show yuri at thide zorder 1 
-    show natsuki at thide zorder 1 
-    show sayori at thide zorder 1 
-    show monika at t11 zorder 2 
-    hide yuri 
-    hide natsuki 
-    hide sayori 
+    show yuri zorder 1 at thide
+    show natsuki zorder 1 at thide
+    show sayori zorder 1 at thide
+    show monika zorder 2 at t11
+    hide yuri
+    hide natsuki
+    hide sayori
     m "Ладно, все!"
     m "Думаю, что на такой хорошей ноте мы можем официально закончить сегодняшнее собрание."
     m "Все, запомните сегодняшнее задание:"
     m "Написать поэму и принести её на следующую встречу, чтобы мы все могли ими поделиться!"
     "Моника ещё раз взглянула на меня."
     m "[player], мне не терпится увидеть, как ты себя покажешь."
-    show monika 5 at hop 
+    show monika 5 at hop
     m "Эхехе~"
     mc "Д-да..."
-    show monika at thide zorder 1 
-    hide monika 
+    show monika zorder 1 at thide
+    hide monika
     "Смогу ли я действительно произвести впечатление на звезду класса -- Монику, моим посредственным навыком писательства?"
     "Я уже ощущаю нарастающее чувство тревоги."
     "Между тем, девушки продолжают болтать, пока Юри и Нацуки убирают еду со стола."
-    show sayori 1a at t11 zorder 2 
+    show sayori 1a zorder 2 at t11
     s "Эй, [player], раз уж мы оба здесь, хочешь пойти домой вместе?"
     "И правда -- Сайори и я перестали ходить домой вместе, поскольку она постоянно оставалась в клубе после школы."
     mc "Конечно, почему бы и нет."
     s "Ееей~"
 
-    scene bg residential_day 
+    scene bg residential_day
     with wipeleft_scene
 
     "И так мы оба покинули комнату клуба и направились домой."
     "Всю дорогу мои мысли вращались вокруг этих четырех девушек:"
-    show sayori 1 at t41 zorder 2 
+    show sayori 1 zorder 2 at t41
     "Сайори,"
-    show natsuki 4 at t42 zorder 2 
+    show natsuki 4 zorder 2 at t42
     "Нацуки,"
-    show yuri 1 at t43 zorder 2 
+    show yuri 1 zorder 2 at t43
     "Юри,"
-    show monika 1 at t44 zorder 2 
+    show monika 1 zorder 2 at t44
     "и, разумеется, Моники."
     "Действительно ли я буду счастлив, оставаясь каждый день после школы в Литературном Клубе?"
     "Возможно, у меня будет шанс сблизиться с одной из этих девушек..."
-    hide sayori 
-    hide natsuki 
-    hide yuri 
-    hide monika 
+    hide sayori
+    hide natsuki
+    hide yuri
+    hide monika
     with wipeleft
     "Ладно!"
     "Мне просто нужно извлечь максимум из сложившихся обстоятельств, и тогда, я уверен, удача будет мне благоволить."
@@ -593,7 +598,7 @@ label ch0_main:
 
 label ch0_kill:
     $ s_name = "Сайори"
-    show sayori 1b at t11 zorder 2 
+    show sayori 1b zorder 2 at t11
     s "..."
     s "..."
     s "Ч-Что..."
@@ -615,3 +620,4 @@ label ch0_kill:
     $ delete_character("monika")
     $ renpy.quit()
     return
+# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc

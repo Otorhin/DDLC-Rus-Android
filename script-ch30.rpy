@@ -97,19 +97,30 @@ init python:
     import random
     import subprocess
     import os
-
+    
     dismiss_keys = config.keymap['dismiss']
-
+    
     def slow_nodismiss(event, interact=True, **kwargs):
         if not persistent.monika_kill:
-            if persistent.monika is None or persistent.monika == "restored":  # TO!DONE: character fix!
-                pass
-            else:
-                persistent.tried_skip = True
-                config.allow_skipping = False
-                _window_hide(None)
-                pause(2.0)
-                renpy.jump("ch30_end")
+            if renpy.android :
+                try:
+                    with open(os.environ['ANDROID_PUBLIC'] + "/characters/monika.chr", "rb") as f: 
+                        pass
+                except:
+                    persistent.tried_skip = True
+                    config.allow_skipping = False
+                    _window_hide(None)
+                    pause (2.0)
+                    renpy.jump("ch30_end")
+            else :
+                try:
+                    renpy.file("../characters/monika.chr")
+                except:
+                    persistent.tried_skip = True
+                    config.allow_skipping = False
+                    _window_hide(None)
+                    pause (2.0)
+                    renpy.jump("ch30_end")
             if  config.skipping:
                 persistent.tried_skip = True
                 config.skipping = False
@@ -136,28 +147,28 @@ label ch30_main:
         $ style.say_dialogue = style.default_monika
     $ m_name = "Моника"
     $ delete_all_saves()
-    scene white 
+    scene white
     play music "bgm/monika-start.ogg" noloop
     pause 0.5
-    show splash-glitch2  with Dissolve(0.5, alpha=True)
+    show splash-glitch2 with Dissolve(0.5, alpha=True)
     pause 2.0
-    hide splash-glitch2  with Dissolve(0.5, alpha=True)
-    scene black 
+    hide splash-glitch2 with Dissolve(0.5, alpha=True)
+    scene black
     stop music
     m "..."
     m "Эй, меня слышно?"
     m "...Эта штука работает?"
     $ persistent.clear[9] = True
-    show mask_2 
-    show mask_3 
+    show mask_2
+    show mask_3
     show room_mask as rm:
-        size (320,180) 
-        pos (30,200) 
+        size (320,180)
+        pos (30,200)
     show room_mask2 as rm2:
-        size (320,180) 
-        pos (935,200) 
-    show monika_bg 
-    show monika_bg_highlight 
+        size (320,180)
+        pos (935,200)
+    show monika_bg
+    show monika_bg_highlight
     play music m1
     m "А, вот и ты!"
     m "Приветствую тебя опять, [player]."
@@ -254,16 +265,16 @@ label ch30_main2:
     if not config.developer:
         $ style.say_dialogue = style.default_monika
     $ persistent.autoload = "ch30_main2"
-    show mask_2 
-    show mask_3 
+    show mask_2
+    show mask_3
     show room_mask as rm:
-        size (320,180) 
-        pos (30,200) 
+        size (320,180)
+        pos (30,200)
     show room_mask2 as rm2:
-        size (320,180) 
-        pos (935,200) 
-    show monika_bg 
-    show monika_bg_highlight 
+        size (320,180)
+        pos (935,200)
+    show monika_bg
+    show monika_bg_highlight
     play music m1
     menu:
         "Давай.":
@@ -300,7 +311,7 @@ label ch30_main2:
     m "А ты?"
     m "Мне интересно, работает ли эта часть игры..."
     m "Я полагаю, есть только один способ узнать."
-    call poem from  _call_poem_6
+    call poem from _call_poem_6
 
 label ch30_postpoem:
     $ persistent.autoload = "ch30_postpoem"
@@ -310,17 +321,17 @@ label ch30_postpoem:
     $ config.allow_skipping = False
     if not config.developer:
         $ style.say_dialogue = style.default_monika
-    scene black 
-    show mask_2 
-    show mask_3 
+    scene black
+    show mask_2
+    show mask_3
     show room_mask as rm:
-        size (320,180) 
-        pos (30,200) 
+        size (320,180)
+        pos (30,200)
     show room_mask2 as rm2:
-        size (320,180) 
-        pos (935,200) 
-    show monika_bg 
-    show monika_bg_highlight 
+        size (320,180)
+        pos (935,200)
+    show monika_bg
+    show monika_bg_highlight
     play music m1
     m "И снова здравствуй, [player]!"
     m "Написал ли ты хорошую поэму сегодня?"
@@ -333,7 +344,7 @@ label ch30_postpoem:
     m "Но, ты знаешь..."
     m "Поэма, которую я написала... тоже для тебя."
     m "Можешь, пожалуйста, прочитать её?"
-    call showpoem (poem_m4, music=False) from  _call_showpoem_21
+    call showpoem (poem_m4, music=False) from _call_showpoem_21
     m "Я надеюсь, тебе она понравилась..."
     m "Я всегда вкладываю свою душу в поэмы, которые я пишу."
     m "На самом деле, все поэмы, которые я писала, о моём осознании..."
@@ -352,7 +363,7 @@ label ch30_postpoem:
     m "С чего бы начать...?"
     $ stream_list = ["obs32.exe", "obs64.exe", "obs.exe", "xsplit.core.exe"]
     if list(set(process_list).intersection(stream_list)):
-        call ch30_stream from  _call_ch30_stream
+        call ch30_stream from _call_ch30_stream
     m "Извини, если мне понадобится время, чтобы собраться с мыслями."
     m "Но у меня всегда будут темы для разговора."
     m "А пока что мы можем просто смотреть в глаза друг другу~"
@@ -469,9 +480,9 @@ label ch30_endb:
     show monika_body_glitch2 as mbg zorder 3
     stop music
     window auto
-    m "What's happening...?"
-    m "[player], what's happening to me?"
-    m "It hurts--{nw}"
+    m "Ч-что происходит...?"
+    m "[player], что с-со мной?"
+    m "Мне больно--{nw}"
     play sound "sfx/s_kill_glitch1.ogg"
     show room_glitch zorder 2:
         alpha 1.0
@@ -496,8 +507,8 @@ label ch30_endb:
     stop sound
     hide mbg
     pause 1.5
-    m "It hurts...so much."
-    m "Help me, [player]."
+    m "Мне так... больно..."
+    m "П-помоги мне, [player]."
     play sound "<to 1.5>sfx/interference.ogg"
     hide rm
     hide rm2
@@ -526,10 +537,10 @@ label ch30_endb:
             alpha 0.375
             repeat
     pause 1.5
-    m "Please hurry and help me."
+    m "П-пожалуйста, скорее помоги м-мне."
     $ consolehistory = []
-    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr does not exist.")
-    m "HELP ME!!!"
+    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr не существует.") from  _call_updateconsole_17
+    m "ПОМОГИ МНЕ!!!"
     show m_rectstatic
     show m_rectstatic2
     show m_rectstatic3
@@ -578,11 +589,11 @@ label ch30_endb:
 
 
     pause 3.0
-    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr не существует.") from  _call_updateconsole_18
-    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr не существует.") from  _call_updateconsole_19
-    call hideconsole from  _call_hideconsole_2
-    hide noise onlayer front 
-    hide glitch_color onlayer front 
+    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr не существует.") from _call_updateconsole_18
+    call updateconsole ("renpy.file(\"characters/monika.chr\")", "monika.chr не существует.") from _call_updateconsole_19
+    call hideconsole from _call_hideconsole_2
+    hide noise onlayer front
+    hide glitch_color onlayer front
     m "[player], ты сделал это со мной?"
     m "ТЫ СДЕЛАЛ ЭТО?"
     $ style.say_window = style.window
@@ -639,7 +650,7 @@ label ch30_end_2:
     $ quick_menu = False
     $ config.allow_skipping = False
     $ style.say_window = style.window_monika
-    scene black 
+    scene black
     window hide
     pause 10
     window auto
@@ -797,7 +808,6 @@ label ch30_reload_4:
     m "И снова привет, [player]~"
     m "Я скучала."
     m "Ты проверял, мой файл в порядке?"
-    m "Он в [basedir]/characters."
     if persistent.steam:
         m "Ну, ты играешь в Steam, так что ты можешь просто зайти в свойства игры, и найти кнопку под названием 'Просмотреть Локальные Файлы'."
     elif renpy.macintosh:
@@ -820,7 +830,7 @@ label ch30_loop:
     $ waittime = renpy.random.randint(4, 8)
 label ch30_waitloop:
     python:
-        if persistent.monika is None or persistent.monika == "restored":  # TO!DONE: character fix!
+        if persistent.monika is None or persistent.monika == "restored":  
             pass
         else:
             persistent.tried_skip = True
@@ -1814,3 +1824,4 @@ label ch30_56:
     m "Поэтому я вовсе не скучаю по тем дням."
     m "Правда не скучаю..."
     return
+# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc
