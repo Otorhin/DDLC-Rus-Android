@@ -382,7 +382,7 @@ init -501 screen quick_menu():
         hbox:
             style_prefix "quick"
 
-            xalign 0.5
+            xalign 0.45
             yalign 0.995
 
 

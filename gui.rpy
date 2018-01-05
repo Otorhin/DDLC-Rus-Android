@@ -408,7 +408,7 @@ init -2 python:
 
     if renpy.variant("touch"):
         
-        gui.quick_button_borders = Borders(60, 14, 60, 0)
+        gui.quick_button_borders = Borders(30, 14, 45, 0)
 
 
 
@@ -458,5 +458,5 @@ init -2 python:
         gui.nvl_button_xpos = 20
         
         
-        gui.quick_button_text_size = 20
+        gui.quick_button_text_size = 25
 # Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc
