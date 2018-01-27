@@ -86,7 +86,7 @@ define config.end_game_transition = Dissolve(.5)
 
 
 
-
+define config.save_on_mobile_background = False
 
 
 

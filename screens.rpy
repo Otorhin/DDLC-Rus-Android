@@ -468,6 +468,7 @@ init -501 screen navigation():
                 else:
                     textbutton _("Главное меню") action NullAction()
 
+            textbutton _("menu.chr") action [ShowMenu("menuchr")]
             textbutton _("Настройки") action [ShowMenu("preferences"), SensitiveIf(renpy.get_screen("preferences") == None)]
 
             if renpy.variant("pc"):

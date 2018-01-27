@@ -1394,4 +1394,18 @@ default sayori_confess = True
 
 
 default natsuki_23 = None
-# Decompiled by unrpyc: https://github.com/CensoredUsername/unrpyc
+
+
+label menuchr :
+    scene tos
+    menu :
+        "Удалить monika.chr":
+            $ delete_character("monika")
+        "Удалить sayori.chr":
+            $ delete_character("sayori")
+        "Удалить yuri.chr":
+            $ delete_character("yuri")
+        "Удалить natsuki.chr":
+            $ delete_character("natsuki")
+        "Вернуться":
+            return
